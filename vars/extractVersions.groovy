@@ -12,7 +12,10 @@ def extractFromFile(String text) {
     echo "Segs: $segs"
     env.CURRENT_VERSION = segs.join('.')
     env.NEXT_VERSION = "${segs.join('.')}.Final"
-    env.NEXT_SNAPSHOT = "${increment(segs)}-SNAPSHOT"
+
+    def nextsegs = segs.collect()
+    nextsegs[nextsegs.length -1]++
+    env.NEXT_SNAPSHOT = "${nextsegs}-SNAPSHOT"
 
     echo "\t Current Version: $env.CURRENT_VERSION-SNAPSHOT"
     echo "\t Next Version: $env.NEXT_VERSION"
