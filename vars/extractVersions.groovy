@@ -1,8 +1,8 @@
 def call(Map args) {
-    if (args.file) {
-        extractFromFile(args.file)
+    if (args.version) {
+        extractFromFile(args.version)
     } else {
-        error "Please specify file contents via readFile(workspaceFile)"
+        error "Please specify version string"
     }
 }
 
@@ -12,10 +12,7 @@ def segments(String v) {
 
 @NonCPS
 def extractFromFile(String text) {
-
-    final def file = new XmlSlurper().parseText(text)
-    echo "txt: ${file.version().text()}"
-    final def segs = segments(file.version.text())
+    final def segs = segments(text)
     echo "SEGS: ${Arrays.toString(segs)}"
     env.CURRENT_VERSION = segs.join('.')
     env.NEXT_VERSION = "${segs.join('.')}.Final"
