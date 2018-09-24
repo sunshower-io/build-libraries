@@ -2,7 +2,7 @@ def call(Map args) {
     if (args.file) {
         extractFromFile(args.file)
     } else {
-        extractFromFile('pom.xml')
+        error "Please specify file contents via readFile(workspaceFile)"
     }
 }
 
@@ -11,10 +11,9 @@ def segments(String v) {
 }
 
 @NonCPS
-def extractFromFile(String filename) {
-    echo "Parsing file: $filename"
+def extractFromFile(String text) {
 
-    final def file = new XmlSlurper().parseText(new File(filename).text)
+    final def file = new XmlSlurper().parseText(text)
     final def segs = segments(file.version.text())
     echo "SEGS: ${Arrays.toString(segs)}"
     env.CURRENT_VERSION = segs.join('.')
