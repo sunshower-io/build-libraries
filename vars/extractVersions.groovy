@@ -19,7 +19,7 @@ def extractFromFile(String filename) {
     final def segs = segments(file.version.text())
 
     env.CURRENT_VERSION = segs.join('.')
-    env.NEXT_VERSION = "${segs.join('.').Final}"
+    env.NEXT_VERSION = "${segs.join('.')}.Final"
     env.NEXT_SNAPSHOT = "${increment(segs)}-SNAPSHOT"
 
     echo "\t Current Version: $env.CURRENT_VERSION-SNAPSHOT"
