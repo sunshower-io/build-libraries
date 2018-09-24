@@ -18,9 +18,14 @@ def extractFromFile(String filename) {
     final def file = new XmlSlurper().parseText(readFile(filename))
     final def segs = segments(file.version.text())
 
-    env.CURRENT_VERSION = segs.join('.')
-    env.NEXT_VERSION = "${segs.join('.')}.Final"
-    env.NEXT_SNAPSHOT = "${increment(segs)}-SNAPSHOT"
+    try {
+        echo "SEGS: ${Arrays.toString(segs)}"
+        env.CURRENT_VERSION = segs.join('.')
+        env.NEXT_VERSION = "${segs.join('.')}.Final"
+        env.NEXT_SNAPSHOT = "${increment(segs)}-SNAPSHOT"
+    } catch(e) {
+        echo "GOT AN ERROR: ${e.message}"
+    }
 
     echo "\t Current Version: $env.CURRENT_VERSION-SNAPSHOT"
     echo "\t Next Version: $env.NEXT_VERSION"
