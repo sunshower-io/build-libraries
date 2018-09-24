@@ -11,7 +11,7 @@ def segments(String v) {
     return v.split('\\-')[0].split('\\.').map{t -> Integer.valueOf(t)}
 }
 
-
+@NonCPS
 def extractFromFile(String filename) {
     echo "Parsing file: $filename"
 
