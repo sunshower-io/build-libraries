@@ -14,9 +14,11 @@ def segments(String v) {
 def extractFromFile(String text) {
     echo "Extracting variables from: $text"
     final def segs = segments(text)
-    echo "SEGS: ${Arrays.toString(segs)}"
+    echo "1"
     env.CURRENT_VERSION = segs.join('.')
+    echo "2"
     env.NEXT_VERSION = "${segs.join('.')}.Final"
+    echo "3"
     env.NEXT_SNAPSHOT = "${increment(segs)}-SNAPSHOT"
 
     echo "\t Current Version: $env.CURRENT_VERSION-SNAPSHOT"
