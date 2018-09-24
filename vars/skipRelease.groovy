@@ -9,11 +9,10 @@ def call(Map args) {
 }
 
 def check(boolean forceAbort) {
-    echo "SKIP_BUILDC: $env.SKIP_BUILD $forceAbort"
-    env.SKIP_BUILD = false
+    env.SKIP_BUILD = "false" 
     result = sh(script: "git log -1 | grep '.*\\[skip-build\\].*'", returnStatus: true)
     if (result == 0) {
-        env.SKIP_BUILD = true
+        env.SKIP_BUILD = "true"
         if (forceAbort) {
             error "'[skip-build]' found in git commit message. Aborting."
         } else {
@@ -27,7 +26,7 @@ def check(boolean forceAbort) {
 
 def postProcess(forceAbort) {
     echo "SKIP_BUILD: $env.SKIP_BUILD"
-    if (env.SKIP_BUILD) {
+    if (env.SKIP_BUILD == "true") {
         if (forceAbort) {
             currentBuild.result = 'NOT_BUILT'
         }
