@@ -17,7 +17,9 @@ def segments(String v) {
         echo "t: $t"
         return Integer.parseInt(t)
     }
-    return v.split('\\-')[0].split('\\.').collect{ t -> Integer.valueOf(t) }
+    echo "$a4"
+    return a4
+//    return v.split('\\-')[0].split('\\.').collect{ t -> Integer.valueOf(t) }
 }
 
 @NonCPS
