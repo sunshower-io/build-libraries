@@ -7,7 +7,7 @@ def call(Map args) {
 }
 
 def segments(String v) {
-    return v.split('\\-')[0].split('\\.').map { t -> Integer.valueOf(t) }
+    return v.split('\\-')[0].split('\\.').collect{ t -> Integer.valueOf(t) }
 }
 
 @NonCPS
