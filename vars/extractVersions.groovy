@@ -12,6 +12,7 @@ def segments(String v) {
 
 @NonCPS
 def extractFromFile(String text) {
+    echo "Extracting variables from: $text"
     final def segs = segments(text)
     echo "SEGS: ${Arrays.toString(segs)}"
     env.CURRENT_VERSION = segs.join('.')
