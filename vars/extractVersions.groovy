@@ -15,9 +15,9 @@ def segments(String v) {
 def extractFromFile(String filename) {
     echo "Parsing file: $filename"
 
+    final def file = new XmlSlurper().parseText(readFile(filename))
 //
 //    try {
-//        final def file = new XmlSlurper().parseText(readFile(filename))
 //        final def segs = segments(file.version.text())
 //        echo "SEGS: ${Arrays.toString(segs)}"
 //        env.CURRENT_VERSION = segs.join('.')
