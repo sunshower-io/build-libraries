@@ -19,6 +19,6 @@ def check() {
 
 def postProcess() {
     if (env.SKIP_BUILD) {
-        currentBuild.result = 'ABORTED'
+        currentBuild.result = 'NOT_BUILT'
     }
 }
