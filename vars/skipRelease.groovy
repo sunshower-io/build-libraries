@@ -18,6 +18,8 @@ def check(boolean forceAbort) {
         } else {
             echo "'[skip-build]' was found in git commit message.  Setting environment"
         }
+    } else {
+        echo "No '[skip-build]' found"
     }
 }
 
