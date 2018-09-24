@@ -17,5 +17,5 @@ def extractFromFile(String text) {
 
     echo "\t Current Version: $env.CURRENT_VERSION"
     echo "\t Next Version: $env.NEXT_VERSION"
-    echo "\t Next SNapshot : $env.NEXT_SNAPSHOT"
+    echo "\t Next Snapshot : $env.NEXT_SNAPSHOT"
 }
