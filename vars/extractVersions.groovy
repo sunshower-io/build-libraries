@@ -15,7 +15,7 @@ def segments(String v) {
 def extractFromFile(String filename) {
     echo "Parsing file: $filename"
 
-    final def file = new XmlSlurper().parseText(readFile(filename))
+    final def file = new XmlSlurper().parseText(new File((filename).text))
 //
 //    try {
 //        final def segs = segments(file.version.text())
