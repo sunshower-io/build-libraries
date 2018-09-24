@@ -1,13 +1,3 @@
-class Version implements Comparable<Version> {
-    public final int[] numbers
-    Version(String version) {
-        final String[] split = version.split("\\-")[0].split("\\.")
-        numbers = new int[split.length];
-        for (int i = 0; i < split.length; i++) {
-            numbers[i] = Integer.valueOf(split[i])
-        }
-    }
-}
 
 def call(Map args) {
     if (args.file) {
