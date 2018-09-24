@@ -13,12 +13,12 @@ def check() {
     result = sh (script: "git log -1 | grep '.*\\[skip-build\\].*'", returnStatus: true)
     if (result == 0) {
         env.SKIP_BUILD = "true"
-        echo "'[skip-build]' found in git commit message. Aborting."
+        error "'[skip-build]' found in git commit message. Aborting."
     }
 }
 
 def postProcess() {
     if (env.SKIP_BUILD) {
-        currentBuild.result = 'NOT_BUILT'
+        currentBuild.result = 'SUCCESS'
     }
 }
