@@ -7,6 +7,16 @@ def call(Map args) {
 }
 
 def segments(String v) {
+    def a1 = v.split('\\-')
+    echo "a1: $a1"
+    def a2 = a1[0]
+    echo "a2: $a2"
+    def a3 = a2.split('\\.')
+    echo "a3: $a3"
+    def a4 = a3.collect{t ->
+        echo "t: $t"
+        return Integer.parseInt(t)
+    }
     return v.split('\\-')[0].split('\\.').collect{ t -> Integer.valueOf(t) }
 }
 
