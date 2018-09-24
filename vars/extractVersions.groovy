@@ -13,6 +13,7 @@ def segments(String v) {
 @NonCPS
 def extractFromFile(String text) {
 
+    echo "text: $text"
     final def file = new XmlSlurper().parseText(text)
     final def segs = segments(file.version.text())
     echo "SEGS: ${Arrays.toString(segs)}"
