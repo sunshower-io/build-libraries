@@ -2,6 +2,7 @@
 def call(Map args) {
     def build = args.build
     def rooturl = args.rootUrl
+    def name = args.name
     def buildUrl = args.buildUrl
     def body = """
 <j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define">
@@ -47,7 +48,7 @@ def call(Map args) {
           </j:choose>
       </TD><TD valign="center"><B style="font-size: 200%;">BUILD ${build.result}</B></TD></TR>
       <TR><TD>Build URL</TD><TD><A href="${buildUrl}">${buildUrl}</A></TD></TR>
-      <TR><TD>Project:</TD><TD>${project.name}</TD></TR>
+      <TR><TD>Project:</TD><TD>${name}</TD></TR>
       <TR><TD>Date of build:</TD><TD>${it.timestampString}</TD></TR>
       <TR><TD>Build duration:</TD><TD>${build.durationString}</TD></TR>
     </TABLE>
