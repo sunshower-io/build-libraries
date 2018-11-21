@@ -63,7 +63,7 @@ def call(Map args) {
               <TR>
                 <TD colspan="2" class="bg2">Revision <B>${cs.commitId ?: cs.revision ?: cs.changeNumber}</B> by
                   <B>${cs.author.displayName}: </B>
-                  <B>(${cs.msgAnnotated})</B>
+                  <B>(${cs.commentAnnotated})</B>
                 </TD>
               </TR>
             """
