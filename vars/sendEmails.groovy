@@ -56,101 +56,21 @@ def call(Map args) {
     
     
     <!-- CHANGE SET -->
-    
-    <j:set var="changeSet" value="${build.changeSets}" />
-    <j:if test="${changeSet != null}">
-      <j:set var="hadChanges" value="false" />
-      <TABLE width="100%">
-        <TR><TD class="bg1" colspan="2"><B>Changes</B></TD></TR>
-        <j:forEach var="cs" items="${changeSet}" varStatus="loop">
-          <j:set var="hadChanges" value="true" />
-          <j:set var="aUser" value="${cs.hudsonUser}"/>
-          <TR>
-            <TD colspan="2" class="bg2">${spc}Revision <B>${cs.commitId ?: cs.revision ?: cs.changeNumber}</B> by
-              <B>${aUser != null ? aUser.displayName : cs.author.displayName}: </B>
-              <B>(${cs.msgAnnotated})</B>
-            </TD>
-          </TR>
-          <j:forEach var="p" items="${cs.affectedFiles}">
-            <TR>
-              <TD width="10%">${spc}${p.editType.name}</TD>
-              <TD>${p.path}</TD>
-            </TR>
-          </j:forEach>
-        </j:forEach>
-        <j:if test="${!hadChanges}">
-          <TR><TD colspan="2">No Changes</TD></TR>
-        </j:if>
-      </TABLE>
-      <BR/>
-    </j:if>
-    
-    
-    <!-- ARTIFACTS -->
-    
-    <j:set var="artifacts" value="${build.artifacts}" />
-    <j:if test="${
-        artifacts != null
-        and artifacts.size() & gt; 0
-    }">
-      <TABLE width="100%">
-        <TR><TD class="bg1"><B>Build Artifacts</B></TD></TR>
-        <TR>
-          <TD>
-            <j:forEach var="f" items="${artifacts}">
-              <li>
-                <a href="${rooturl}${build.url}artifact/${f}">${f}</a>
-              </li>
-            </j:forEach>
-          </TD>
-        </TR>
-      </TABLE>
-      <BR/>  
-    </j:if>
-    
-    <!-- Test reporting TEMPLATE (references to JUnit refer to the JUnit style XML Output produced by the MATLAB TestRunner) -->     
-    <j:set var="resultList" value="${it.JUnitTestResult}" />
-    <j:if test="${resultList.isEmpty() != true}">
-      <TABLE width="100%">
-        <j:forEach var="testResult" items="${resultList}">
-          <j:set var="failCount" value="${failCount + testResult.getFailCount()}"/>
-          <j:set var="skipCount" value="${skipCount + testResult.getSkipCount()}"/>
-          <j:set var="passCount" value="${passCount + testResult.getPassCount()}"/>
-        </j:forEach>
-        <TR><TD class="bg1" colspan="2"><B>MATLAB Test Suite Summary:</B> ${passCount + failCount + skipCount} Ran, ${
-        failCount
-    } Failed, ${passCount} Passed, ${skipCount} Filtered</TD></TR>
+    <TABLE width="100%">
+        ${build.changeSets.each { cs ->
+            println """
+              <TR><TD class="bg1" colspan="2"><B>Changes</B></TD></TR>
+              <TR>
+                <TD colspan="2" class="bg2">Revision <B>${cs.commitId ?: cs.revision ?: cs.changeNumber}</B> by
+                  <B>${cs.author.displayName}: </B>
+                  <B>(${cs.msgAnnotated})</B>
+                </TD>
+              </TR>
+            """
+            
         
-        <TR><TD class="bg1" colspan="2"><B>Failed Tests</B></TD></TR>
-        <j:forEach var="testResult" items="${resultList}">
-          <j:forEach var="packageResult" items="${testResult.getChildren()}">
-            <j:forEach var="failed_test" items="${packageResult.getFailedTests()}">
-              <TR class="failed_row" bgcolor="white"><TD class="test_failed" colspan="2"><B><li>Failed: ${
-        failed_test.getFullName()
-    } </li></B></TD></TR>
-              <TR class="output_row"><TD class="output"><PRE>${failed_test.getErrorStackTrace()}</PRE></TD></TR>
-            </j:forEach>
-          </j:forEach> 
-        </j:forEach>
-        
-        <TR><TD class="bg1" colspan="2"><B>Filtered Tests</B></TD></TR>
-        <j:forEach var="testResult" items="${resultList}">
-          <j:forEach var="packageResult" items="${testResult.getChildren()}">
-            <j:forEach var="filtered_test" items="${packageResult.getSkippedTests()}">
-              <TR bgcolor="white"><TD class="test_filtered" colspan="2"><B><li>Filtered: ${filtered_test.getFullName()} </li></B></TD></TR>
-            </j:forEach>  
-          </j:forEach>
-        </j:forEach>
-      </TABLE>\t
-      <BR/>
-    </j:if>
-
-    <!-- CONSOLE OUTPUT -->
-      <TABLE width="100%" cellpadding="0" cellspacing="0">
-        <TR><TD class="bg1"><B>Build Log Tail (Full Log Attached)</B></TD></TR>
-        <j:forEach var="line" items="${build.getLog(100)}"><TR><TD class="build_log">${line}</TD></TR></j:forEach>
-      </TABLE>
-      <BR/>
+        }}
+    </TABLE>
     
   </BODY>
 </j:jelly>
