@@ -49,7 +49,7 @@ def call(Map args) {
       </TD><TD valign="center"><B style="font-size: 200%;">BUILD ${build.result}</B></TD></TR>
       <TR><TD>Build URL</TD><TD><A href="${buildUrl}">${buildUrl}</A></TD></TR>
       <TR><TD>Project:</TD><TD>${name}</TD></TR>
-      <TR><TD>Date of build:</TD><TD>${new Date(build.startTimeInMillis).format(new SimpleDateFormat("dd MMM yyyy HH:mm:ss:SSS Z"))}</TD></TR>
+      <TR><TD>Date of build:</TD><TD>${new Date(build.startTimeInMillis)}</TD></TR>
       <TR><TD>Build duration:</TD><TD>${build.durationString}</TD></TR>
     </TABLE>
     <BR/>
