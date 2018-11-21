@@ -49,8 +49,6 @@ def call(Map args) {
       </TD><TD valign="center"><B style="font-size: 200%;">BUILD ${build.result}</B></TD></TR>
       <TR><TD>Build URL</TD><TD><A href="${buildUrl}">${buildUrl}</A></TD></TR>
       <TR><TD>Project:</TD><TD>${name}</TD></TR>
-      <TR><TD>Date of build:</TD><TD>${it.timestampString}</TD></TR>
-      <TR><TD>Build duration:</TD><TD>${build.durationString}</TD></TR>
     </TABLE>
     <BR/>
     
