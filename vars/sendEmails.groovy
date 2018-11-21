@@ -2,6 +2,7 @@
 def call(Map args) {
     def build = args.build
     def rooturl = args.rootUrl
+    def buildUrl = args.buildUrl
     def body = """
 <j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define">
   
