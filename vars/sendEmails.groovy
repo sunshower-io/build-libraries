@@ -57,7 +57,7 @@ def call(Map args) {
     
     <!-- CHANGE SET -->
     <TABLE width="100%">
-        ${build.changeSets.each { cs ->
+        ${build.changeSets.collectMany{t -> t.getLogs()}.each { cs ->
             println """
               <TR><TD class="bg1" colspan="2"><B>Changes</B></TD></TR>
               <TR>
