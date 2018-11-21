@@ -47,8 +47,8 @@ def call(Map args) {
     
     
     <TABLE width="100%">
-        ${build.changeSets.collectMany{t -> t.getLogs()}.each { cs ->
-            println """
+        ${sw -> build.changeSets.collectMany{t -> t.getLogs()}.each { cs ->
+            sw << """
               <TR><TD class="bg1" colspan="2"><B>Changes</B></TD></TR>
               <TR>
                 <TD colspan="2" class="bg2">Revision <B>${cs.commitId ?: cs.revision ?: cs.changeNumber}</B> by
