@@ -1,4 +1,5 @@
 
+@NonCPS
 def call(Map args) {
     def build = args.build
     def rooturl = args.rootUrl
@@ -55,7 +56,6 @@ def call(Map args) {
     <BR/>
     
     
-    <!-- CHANGE SET -->
     <TABLE width="100%">
         ${build.changeSets.collectMany{t -> t.getLogs()}.each { cs ->
             println """
@@ -67,8 +67,6 @@ def call(Map args) {
                 </TD>
               </TR>
             """
-            
-        
         }}
     </TABLE>
     
