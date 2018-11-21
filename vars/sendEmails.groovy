@@ -29,24 +29,14 @@ def call(Map args) {
     TR.failed_row:hover + TR.output_row TD.output{font-size:100%;}                
   </STYLE>
   <BODY>
-    <j:set var="spc" value="&amp;nbsp;&amp;nbsp;" />
-    
-    
-    <!-- GENERAL INFO -->
     
     <TABLE>
       <TR><TD align="right">
-          <j:choose>
-            <j:when test="${build.result == 'SUCCESS'}">
-              <IMG SRC="${rooturl}static/e59dfe28/images/32x32/blue.gif" />
-            </j:when>
-            <j:when test="${build.result == 'FAILURE'}">
-              <IMG SRC="${rooturl}static/e59dfe28/images/32x32/red.gif" />
-            </j:when>
-            <j:otherwise>
-              <IMG SRC="${rooturl}static/e59dfe28/images/32x32/yellow.gif" />
-            </j:otherwise>
-          </j:choose>
+          ${sw -> 
+                if(build.result == 'SUCCESS') sw << """<IMG SRC="${rooturl}static/e59dfe28/images/32x32/blue.gif" />"""
+                else if(build.result == 'SUCCESS') sw << """<IMG SRC="${rooturl}static/e59dfe28/images/32x32/red.gif" />"""
+                else sw << """<IMG SRC="${rooturl}static/e59dfe28/images/32x32/blue.gif" />"""
+           }
       </TD><TD valign="center"><B style="font-size: 200%;">BUILD ${build.result}</B></TD></TR>
       <TR><TD>Build URL</TD><TD><A href="${buildUrl}">${buildUrl}</A></TD></TR>
       <TR><TD>Project:</TD><TD>${name}</TD></TR>
