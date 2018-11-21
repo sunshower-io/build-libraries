@@ -31,11 +31,11 @@ def call(Map args) {
   <BODY>
     
     <TABLE>
-      <TR><TD align="right">
+      <TR><TD>
           ${sw -> 
-                if(build.result == 'SUCCESS') sw << """<IMG SRC="${rooturl}static/e59dfe28/images/32x32/blue.gif" />"""
-                else if(build.result == 'SUCCESS') sw << """<IMG SRC="${rooturl}static/e59dfe28/images/32x32/red.gif" />"""
-                else sw << """<IMG SRC="${rooturl}static/e59dfe28/images/32x32/blue.gif" />"""
+                if(build.result == 'SUCCESS') sw << """BUILD SUCCESS <IMG SRC="${rooturl}static/e59dfe28/images/32x32/blue.gif" />"""
+                else if(build.result == 'SUCCESS') sw << """BUILD FAILURE <IMG SRC="${rooturl}static/e59dfe28/images/32x32/red.gif" />"""
+                else sw << """BUILD FINISHED <IMG SRC="${rooturl}static/e59dfe28/images/32x32/blue.gif" />"""
            }
       </TD><TD valign="center"><B style="font-size: 200%;">BUILD ${build.result}</B></TD></TR>
       <TR><TD>Build URL</TD><TD><A href="${buildUrl}">${buildUrl}</A></TD></TR>
