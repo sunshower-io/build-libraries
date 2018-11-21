@@ -57,7 +57,7 @@ def call(Map args) {
     
     <!-- CHANGE SET -->
     
-    <j:set var="changeSet" value="${build.changeSet}" />
+    <j:set var="changeSet" value="${build.changeSets}" />
     <j:if test="${changeSet != null}">
       <j:set var="hadChanges" value="false" />
       <TABLE width="100%">
